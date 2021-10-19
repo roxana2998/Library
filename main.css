@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.book-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  
+}
