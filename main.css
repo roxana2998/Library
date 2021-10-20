@@ -21,3 +21,14 @@ input {
     grid-template-columns: repeat(5, 1fr);
   
 }
+
+.book-info {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+} 
+
+.remove-button {
+width: 4rem;
+height: 2rem;
+}
