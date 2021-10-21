@@ -10,7 +10,7 @@ let myLibrary = [];
 
 function Book(title, author, numPages, isRead) {
   (this.title = `${title}`),
-    (this.author = ` by ${author}, `),
+    (this.author = `by ${author},`),
     (this.numPages = `${numPages} pages, `),
     (this.isRead = isRead);
 }
@@ -35,9 +35,9 @@ function showBookInfo(element) {
   bookContainer.appendChild(pNumPages);
 
   if (element.isRead === false) {
-    pIsRead.textContent = "No";
+    pIsRead.textContent = "Not read";
   } else {
-    pIsRead.textContent = "Yes";
+    pIsRead.textContent = "Read";
   }
   bookContainer.appendChild(pIsRead);
 
@@ -45,10 +45,10 @@ function showBookInfo(element) {
 
   pIsRead.addEventListener("click", function () {
     if (element.isRead === false) {
-      pIsRead.textContent = "Yes";
+      pIsRead.textContent = "Read";
       element.isRead = true;
     } else {
-      pIsRead.textContent = "No";
+      pIsRead.textContent = "Not read";
       element.isRead = false;
     }
   });
@@ -81,6 +81,7 @@ booksForm.addEventListener("submit", function (event) {
 
   myLibrary.push(newBook);
 
+
   for (el of inputs) {
     if (el.type === "checkbox") {
       el.checked = false;
@@ -90,9 +91,26 @@ booksForm.addEventListener("submit", function (event) {
   }
 
   showBookInfo(newBook);
+
 });
 
+addButton.addEventListener("click", function() {
+  if (inputs[0].value.trim() === "") {
+    inputs[0].value = "";
+  } 
 
+  if (inputs[1].value.trim() === "") {
+    inputs[1].value = "";
+  } 
+
+  if (inputs[2].value.trim() === "") {
+    inputs[2].value = "";
+  } 
+
+  if (isNaN(parseInt(inputs[2].value))) {
+    inputs[2].value = "";
+  }
+}) 
 
 
 

@@ -28,14 +28,13 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .main-content {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
 }
 
 .library-title {
@@ -64,18 +63,16 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 20rem;
-    
+    margin-bottom: 4rem;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    width: 65%;
+    width: clamp(16rem, 65vw, 40rem);
     padding-top: 1rem;
     font-family: 'Urbanist', sans-serif;
 }
-
 
 label {
     margin: 0.6rem 0;
@@ -83,36 +80,123 @@ label {
 }
 
 .read-box {
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 }
 
-.add-button {
-    width: 2rem;
-    height: 3rem;
+button {
+    width: 6rem;
+    height: 2rem;
+    align-self: center;
 }
+
 .book-container {
+    position: relative;
     font-family: 'Urbanist', sans-serif;
+    padding-top: 1rem;
     margin: 1rem;
-    background-color: #bc6c25;
+    background-color: rgb(237, 217, 163, 0.7);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    border-right: 7px solid #edd9a3 ;
-    border-bottom: 10px solid #edd9a3 ;
+    width: clamp(15rem, 90vw, 30rem);
+    border-radius: 0.5rem;
 }
 
 .book-info {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
 .book-container p {
     margin: 0.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 3rem);
+}
+
+.book-container p:first-of-type {
+    font-size: clamp(1.3rem, 3.5vw, 3.5rem);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.book-container p:nth-of-type(4) {
+    font-size: clamp(1rem, 2vw, 3rem);
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .remove-button {
+    position: absolute;
+    right: 0;
+    top: 0;
     width: 4rem;
     height: 2rem;
+}
+
+/* ..............................MEDIAS................. */
+
+/* ................500px..................... */
+
+@media (min-width: 560px) {
+    .book-container {
+        flex-direction: row;
+        padding: 0;
+        width: 90vw;
+        height: 6rem;
+    }
+    .book-container p {
+        margin: 0.2rem;
+        font-size: clamp(1rem, 2vw, 3rem);
+    }
+    .book-container p:first-of-type {
+        font-size: clamp(1rem, 2vw, 3rem);
+    }
+    .remove-button {
+       right: 0;
+        top: 0;
+        width: 4rem;
+        height: 2rem;
+    }
+    .book-container p:nth-of-type(4) {
+        font-size: 0.9rem;
+
+    }
+    form {
+        width: clamp(16rem, 65vw, 25rem);
+    }
+}
+
+@media (min-width: 750px) {
+    body {
+        background-image: none;
+    }
+    .main-content {
+        flex-direction: row;
+    }
+    .input-section {
+        width: clamp(20rem, 30vw, 40rem);
+        height: 100vh;
+        justify-content: flex-start;
+        background-image: url("library2.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    form {
+        width: clamp(18rem, 20vw, 30rem);
+        padding: 0 1.5rem;
+        margin-top: 1.5rem;
+    }
+    .book-info {        
+        background-color: #fefae0;
+        justify-content: flex-start;
+    }
+    .book-container {
+        
+        width: 60vw;
+    
+    }
 }
