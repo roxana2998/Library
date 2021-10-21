@@ -2,24 +2,24 @@ const inputs = [...document.querySelectorAll("input")];
 const addButton = document.querySelector("#add-button");
 const booksForm = document.querySelector(".books-form");
 const bookInfo = document.querySelector(".book-info");
+const numPages = document.querySelector("num-pages");
 
 let myLibrary = [];
 
 // CONSTRUCTOR FUNCTION
 
 function Book(title, author, numPages, isRead) {
-  (this.title = title),
-    (this.author = author),
-    (this.numPages = numPages),
-    (this.isRead = isRead),
-    (this.provideInfo = function () {
-      return `${title} ${author} ${numPages} ${
-        this.isRead ? "read" : "not read yet"
-      }`;
-    });
+  (this.title = `${title}`),
+    (this.author = ` by ${author}, `),
+    (this.numPages = `${numPages} pages, `),
+    (this.isRead = isRead);
 }
 
-function showBookInfo() {
+// ..........................DISPLAY INPUT VALUES......................
+
+function showBookInfo(element) {
+  const bookContainer = document.createElement("div");
+  bookContainer.className = "book-container";
   const pTitle = document.createElement("p");
   const pAuthor = document.createElement("p");
   const pNumPages = document.createElement("p");
@@ -27,28 +27,48 @@ function showBookInfo() {
   const removeButton = document.createElement("button");
   removeButton.className = "remove-button";
 
-  for (element of myLibrary) {
-    pTitle.textContent = element.title;
-    bookInfo.appendChild(pTitle);
-    pAuthor.textContent = element.author;
-    bookInfo.appendChild(pAuthor);
-    pNumPages.textContent = element.numPages;
-    bookInfo.appendChild(pNumPages);
-    pIsRead.textContent = element.isRead;
-    bookInfo.appendChild(pIsRead);
+  pTitle.textContent = element.title;
+  bookContainer.appendChild(pTitle);
+  pAuthor.textContent = element.author;
+  bookContainer.appendChild(pAuthor);
+  pNumPages.textContent = element.numPages;
+  bookContainer.appendChild(pNumPages);
+
+  if (element.isRead === false) {
+    pIsRead.textContent = "No";
+  } else {
+    pIsRead.textContent = "Yes";
   }
+  bookContainer.appendChild(pIsRead);
+
+// ................CHANGE STATUS........................................
+
+  pIsRead.addEventListener("click", function () {
+    if (element.isRead === false) {
+      pIsRead.textContent = "Yes";
+      element.isRead = true;
+    } else {
+      pIsRead.textContent = "No";
+      element.isRead = false;
+    }
+  });
+
+// ................ADD REMOVE BUTTON.....................................
 
   removeButton.textContent = "remove";
-  bookInfo.appendChild(removeButton);
+  bookContainer.appendChild(removeButton);
+  bookInfo.appendChild(bookContainer);
+
+ 
 
   removeButton.addEventListener("click", function () {
-    pTitle.remove();
-    pAuthor.remove();
-    pNumPages.remove();
-    pIsRead.remove();
-    removeButton.remove();
+   bookContainer.remove();
   });
+
+
 }
+
+//....................ADD INPUT VALUE IN THE ARRAY........................
 
 booksForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -69,8 +89,12 @@ booksForm.addEventListener("submit", function (event) {
     }
   }
 
-  showBookInfo();
+  showBookInfo(newBook);
 });
+
+
+
+
 
 
 

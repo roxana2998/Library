@@ -1,34 +1,118 @@
+@font-face {
+    font-family: 'Urbanist';
+    src: url("Urbanist-VariableFont_wght.ttf");
+}
+
 * {
     box-sizing: border-box;
 }
 
+:root {
+    --dark-green: #606c38;
+    --dark-red: #283618;
+    --dark-blue: #fefae0;
+    --dark-purple: #dda15e;
+    --dark-orange: #bc6c25;
+    --light-white: #443742;
+    --light-black: #846c5b;
+    --light-yellow: #cea07e;
+    --light-violet: #edd9a3;
+    --light-indigo: #F3E9DC;
+    --orange: #1c2541;
+    --white: #ddbea9;
+}
+
 body {
     margin: 0;
+    background-image: url("library2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
 }
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+}
+
+.library-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-top: 2rem;
+}
+
+h1 {
+    margin-left: 1rem;
+    font-family: 'Special Elite', cursive;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.library-icon {
+    width: 2.5rem;
+    height: 2.3rem;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20rem;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    padding-top: 1rem;
+    font-family: 'Urbanist', sans-serif;
+}
+
 
 label {
-    display: block;
-    margin-bottom: 0.5rem;
+    margin: 0.6rem 0;
+    color: white;
 }
 
-input {
-    display: block;
-    margin-bottom: 0.5rem;
+.read-box {
+    margin: 0.5rem 0;
 }
 
-.book-section {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  
+.add-button {
+    width: 2rem;
+    height: 3rem;
+}
+.book-container {
+    font-family: 'Urbanist', sans-serif;
+    margin: 1rem;
+    background-color: #bc6c25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    border-right: 7px solid #edd9a3 ;
+    border-bottom: 10px solid #edd9a3 ;
 }
 
 .book-info {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
-} 
+.book-container p {
+    margin: 0.5rem;
+}
 
 .remove-button {
-width: 4rem;
-height: 2rem;
+    width: 4rem;
+    height: 2rem;
 }
