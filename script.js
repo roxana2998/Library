@@ -10,8 +10,8 @@ let myLibrary = [];
 
 function Book(title, author, numPages, isRead) {
   (this.title = `${title}`),
-    (this.author = `by ${author},`),
-    (this.numPages = `${numPages} pages, `),
+    (this.author = `by ${author}`),
+    (this.numPages = `${numPages} pages`),
     (this.isRead = isRead);
 }
 
@@ -24,7 +24,8 @@ function showBookInfo(element) {
   const pAuthor = document.createElement("p");
   const pNumPages = document.createElement("p");
   const pIsRead = document.createElement("p");
-  const removeButton = document.createElement("button");
+  const removeButton = document.createElement("div");
+  removeButton.textContent = "Remove";
   removeButton.className = "remove-button";
 
   pTitle.textContent = element.title;
@@ -35,9 +36,12 @@ function showBookInfo(element) {
   bookContainer.appendChild(pNumPages);
 
   if (element.isRead === false) {
-    pIsRead.textContent = "Not read";
+    pIsRead.textContent = "Not read"
+    pIsRead.style.backgroundColor = "#A6341B";
   } else {
     pIsRead.textContent = "Read";
+    pIsRead.style.backgroundColor = "#4f6908";
+
   }
   bookContainer.appendChild(pIsRead);
 
@@ -47,15 +51,19 @@ function showBookInfo(element) {
     if (element.isRead === false) {
       pIsRead.textContent = "Read";
       element.isRead = true;
+      pIsRead.style.backgroundColor = "#4f6908";
+
     } else {
       pIsRead.textContent = "Not read";
       element.isRead = false;
+      pIsRead.style.backgroundColor = "#A6341B";
+
     }
   });
 
 // ................ADD REMOVE BUTTON.....................................
 
-  removeButton.textContent = "remove";
+  removeButton.src = "remove-button.png";
   bookContainer.appendChild(removeButton);
   bookInfo.appendChild(bookContainer);
 
