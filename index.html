@@ -17,12 +17,18 @@
           <h1>Library</h1>
         </div>
         <form class="books-form">
-          <label for="title">Title of the book</label>
-          <input type="text" name="title" id="title"  maxlength="16" required/>
-          <label for="author">Author of the book</label>
-          <input type="text" name="author" id="author" maxlength="16" required/>
-          <label for="num-pages">Number of pages</label>
-          <input type="text" name="pages" id="num-pages" maxlength="5" required/>
+          <div class="text-input">
+            <input type="text" name="title" id="title"  maxlength="20" required/>
+            <label class="label-ttext" for="title">Title of the book</label>
+          </div>
+          <div class="text-input">
+            <input type="text" name="author" id="author" maxlength="20" required/>
+            <label class="label-text" for="author">Author of the book</label>
+          </div>
+          <div class="text-input">
+            <input type="text" name="pages" id="num-pages" maxlength="5" required/>
+            <label class="label-text" for="num-pages">Number of pages</label>
+          </div>
           <div class="read-box">
             <input type="checkbox" id="is-read" />
             <label class="read-label" for="is-read">I have already read this book</label>

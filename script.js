@@ -3,6 +3,12 @@ const addButton = document.querySelector("#add-button");
 const booksForm = document.querySelector(".books-form");
 const bookInfo = document.querySelector(".book-info");
 const numPages = document.querySelector("num-pages");
+const labelTitle = document.querySelector(".label-title");
+const inputTitle = document.querySelector("#title");
+const labelAuthor = document.querySelector(".label-author");
+const inputAuthor = document.querySelector("#author");
+const labelPages = document.querySelector(".label-pages");
+const inputPages = document.querySelector("#num-pages");
 
 let myLibrary = [];
 
@@ -28,6 +34,7 @@ function showBookInfo(element) {
   removeButton.textContent = "Remove";
   removeButton.className = "remove-button";
 
+
   pTitle.textContent = element.title;
   bookContainer.appendChild(pTitle);
   pAuthor.textContent = element.author;
@@ -36,47 +43,39 @@ function showBookInfo(element) {
   bookContainer.appendChild(pNumPages);
 
   if (element.isRead === false) {
-    pIsRead.textContent = "Not read"
+    pIsRead.textContent = "Not read";
     pIsRead.style.backgroundColor = "#A6341B";
   } else {
     pIsRead.textContent = "Read";
     pIsRead.style.backgroundColor = "#4f6908";
-
   }
   bookContainer.appendChild(pIsRead);
 
-// ................CHANGE STATUS........................................
+  // ................CHANGE STATUS........................................
 
   pIsRead.addEventListener("click", function () {
     if (element.isRead === false) {
       pIsRead.textContent = "Read";
       element.isRead = true;
       pIsRead.style.backgroundColor = "#4f6908";
-
     } else {
       pIsRead.textContent = "Not read";
       element.isRead = false;
       pIsRead.style.backgroundColor = "#A6341B";
-
     }
   });
 
-// ................ADD REMOVE BUTTON.....................................
+  // ................ADD REMOVE BUTTON.....................................
 
-  removeButton.src = "remove-button.png";
   bookContainer.appendChild(removeButton);
   bookInfo.appendChild(bookContainer);
 
- 
-
   removeButton.addEventListener("click", function () {
-   bookContainer.remove();
+    bookContainer.remove();
   });
-
-
 }
 
-//....................ADD INPUT VALUE IN THE ARRAY........................
+//....................ADD INPUT VALUE IN THE ARRAY AND DISPLAY THE VALUES........................
 
 booksForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -89,7 +88,6 @@ booksForm.addEventListener("submit", function (event) {
 
   myLibrary.push(newBook);
 
-
   for (el of inputs) {
     if (el.type === "checkbox") {
       el.checked = false;
@@ -99,31 +97,27 @@ booksForm.addEventListener("submit", function (event) {
   }
 
   showBookInfo(newBook);
-
 });
 
-addButton.addEventListener("click", function() {
+//......................INPUT VALIDATION...............................
+
+addButton.addEventListener("click", function () {
   if (inputs[0].value.trim() === "") {
     inputs[0].value = "";
-  } 
+  }
 
   if (inputs[1].value.trim() === "") {
     inputs[1].value = "";
-  } 
+  }
 
   if (inputs[2].value.trim() === "") {
     inputs[2].value = "";
-  } 
+  }
 
   if (isNaN(parseInt(inputs[2].value))) {
     inputs[2].value = "";
   }
-}) 
-
-
-
-
-
+});
 
 
 // FACTORY FUNCTION
