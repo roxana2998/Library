@@ -11,6 +11,17 @@ const labelPages = document.querySelector(".label-pages");
 const inputPages = document.querySelector("#num-pages");
 
 let myLibrary = [];
+let savedLibrary = localStorage.getItem("myLibrary");
+
+if (savedLibrary !== null) {
+  myLibrary = JSON.parse(savedLibrary);
+
+  for (let object of myLibrary) {
+    showBookInfo(object);
+  }
+}
+
+
 
 // CONSTRUCTOR FUNCTION
 
@@ -23,7 +34,7 @@ function Book(title, author, numPages, isRead) {
 
 // ..........................DISPLAY INPUT VALUES......................
 
-function showBookInfo(element) {
+function showBookInfo(object) {
   const bookContainer = document.createElement("div");
   bookContainer.className = "book-container";
   const pTitle = document.createElement("p");
@@ -35,14 +46,14 @@ function showBookInfo(element) {
   removeButton.className = "remove-button";
 
 
-  pTitle.textContent = element.title;
+  pTitle.textContent = object.title;
   bookContainer.appendChild(pTitle);
-  pAuthor.textContent = element.author;
+  pAuthor.textContent = object.author;
   bookContainer.appendChild(pAuthor);
-  pNumPages.textContent = element.numPages;
+  pNumPages.textContent = object.numPages;
   bookContainer.appendChild(pNumPages);
 
-  if (element.isRead === false) {
+  if (object.isRead === false) {
     pIsRead.textContent = "Not read";
     pIsRead.style.backgroundColor = "#A6341B";
   } else {
@@ -54,13 +65,13 @@ function showBookInfo(element) {
   // ................CHANGE STATUS........................................
 
   pIsRead.addEventListener("click", function () {
-    if (element.isRead === false) {
+    if (object.isRead === false) {
       pIsRead.textContent = "Read";
-      element.isRead = true;
+      object.isRead = true;
       pIsRead.style.backgroundColor = "#4f6908";
     } else {
       pIsRead.textContent = "Not read";
-      element.isRead = false;
+      object.isRead = false;
       pIsRead.style.backgroundColor = "#A6341B";
     }
   });
@@ -72,6 +83,8 @@ function showBookInfo(element) {
 
   removeButton.addEventListener("click", function () {
     bookContainer.remove();
+    myLibrary.splice(myLibrary.indexOf(object), 1);
+    localStorage.setItem("myLibrary" ,JSON.stringify(myLibrary));
   });
 }
 
@@ -87,6 +100,8 @@ booksForm.addEventListener("submit", function (event) {
   );
 
   myLibrary.push(newBook);
+  localStorage.setItem("myLibrary" ,JSON.stringify(myLibrary));
+
 
   for (el of inputs) {
     if (el.type === "checkbox") {
@@ -98,6 +113,11 @@ booksForm.addEventListener("submit", function (event) {
 
   showBookInfo(newBook);
 });
+
+
+
+
+
 
 //......................INPUT VALIDATION...............................
 
